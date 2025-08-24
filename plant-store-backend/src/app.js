@@ -28,15 +28,6 @@ app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
 // API routes
 app.use('/api/plants', plantRoutes);
-
-// Serve React frontend
-app.use(express.static(path.join(__dirname, 'public')));
-
-// SPA fallback: serve index.html for all other routes
-app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
 // 404 + error handler
 app.use(notFound);
 app.use(errorHandler);
