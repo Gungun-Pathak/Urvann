@@ -14,7 +14,7 @@ const Home = () => {
   const fetchPlants = async () => {
     try {
       setLoading(true);
-      let url = "/api/plants"; // adjust port if needed
+      let url = "https://urvann-1.onrender.com/api/plants"; // adjust port if needed
 
       // add filters dynamically
       const queryParams = [];
