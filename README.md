@@ -25,5 +25,27 @@ It provides features like product listing, category filtering, search functional
 
 ---
 
-## 📂 Project Structure
+# 🌱 Plant Store Backend
+
+This is the **backend service** for the Plant Store project, built with **Node.js + Express + MongoDB**.  
+It provides APIs for managing plants, categories, and availability status.  
+
+---
+
+## 🚀 Features
+- 🌿 REST APIs for plants and categories  
+- 🗂️ MongoDB database integration  
+- 🔍 Search and filter endpoints  
+- 🛡️ CORS & environment variable support  
+- ⚡ Fast and scalable Express server  
+
+---
+
+## ⚙️ Tech Stack
+- **Node.js** (runtime)  
+- **Express.js** (backend framework)  
+- **MongoDB + Mongoose** (database & ODM)  
+- **dotenv** (environment variable management)  
+- **CORS** (cross-origin support)  
+
 
