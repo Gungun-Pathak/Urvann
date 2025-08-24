@@ -1,4 +1,4 @@
-const BASE_URL = "/api/plants"; // your backend URL
+const BASE_URL = "https://urvann-1.onrender.com/api/plants"; // your backend URL
 
 export const fetchPlants = async () => {
   const res = await fetch(BASE_URL);
