@@ -1,0 +1,16 @@
+[
+{ "name": "Money Plant", "categories": ["Indoor", "Air Purifying", "Home Decor"], "price": 199 },
+{ "name": "Areca Palm", "categories": ["Indoor", "Air Purifying"], "price": 349 },
+{ "name": "Snake Plant", "categories": ["Indoor", "Air Purifying"], "price": 299 },
+{ "name": "Peace Lily", "categories": ["Indoor", "Flowering", "Air Purifying"], "price": 279 },
+{ "name": "Aloe Vera", "categories": ["Succulent", "Outdoor", "Medicinal"], "price": 159 },
+{ "name": "Jade Plant", "categories": ["Succulent", "Indoor"], "price": 229 },
+{ "name": "Rubber Plant", "categories": ["Indoor", "Home Decor"], "price": 399 },
+{ "name": "Ficus Bonsai", "categories": ["Indoor", "Bonsai", "Home Decor"], "price": 799 },
+{ "name": "Bougainvillea", "categories": ["Outdoor", "Flowering"], "price": 249 },
+{ "name": "Hibiscus", "categories": ["Outdoor", "Flowering"], "price": 199 },
+{ "name": "Spider Plant", "categories": ["Indoor", "Air Purifying"], "price": 189 },
+{ "name": "ZZ Plant", "categories": ["Indoor", "Low Maintenance"], "price": 459 },
+{ "name": "Pothos Golden", "categories": ["Indoor", "Trailing", "Home Decor"], "price": 179 },
+{ "name": "Boston Fern", "categories": ["Indoor", "Air Purifying"], "price": 219 }
+]
