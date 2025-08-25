@@ -9,6 +9,7 @@ export default function Admin() {
     available: true,
   });
   const [loading, setLoading] = useState(false);
+  const [feedback, setFeedback] = useState({ message: "", type: "" }); // type: success | error
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,11 +21,16 @@ export default function Admin() {
         categories: plant.categories.split(",").map((c) => c.trim()),
       };
       await addPlant(newPlant);
-      alert("✅ Plant added successfully!");
+      setFeedback({ message: "✅ Plant added successfully!", type: "success" });
       setPlant({ name: "", price: "", categories: "", available: true });
+
+      // Auto-hide feedback after 3 seconds
+      setTimeout(() => setFeedback({ message: "", type: "" }), 3000);
     } catch (err) {
       console.error("Error adding plant:", err);
-      alert("❌ Failed to add plant. Please try again.");
+      setFeedback({ message: "❌ Failed to add plant. Please try again.", type: "error" });
+
+      setTimeout(() => setFeedback({ message: "", type: "" }), 3000);
     } finally {
       setLoading(false);
     }
@@ -35,6 +41,20 @@ export default function Admin() {
       <h2 className="text-2xl font-bold mb-6 text-center text-green-700">
         🌱 Add New Plant
       </h2>
+
+      {/* Feedback Message */}
+      {feedback.message && (
+        <div
+          className={`mb-4 text-center py-2 px-4 rounded-lg font-medium ${
+            feedback.type === "success"
+              ? "bg-green-100 text-green-700"
+              : "bg-red-100 text-red-600"
+          }`}
+        >
+          {feedback.message}
+        </div>
+      )}
+
       <form onSubmit={handleSubmit} className="space-y-5">
         {/* Plant Name */}
         <div>
