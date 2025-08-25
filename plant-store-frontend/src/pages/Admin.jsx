@@ -8,59 +8,110 @@ export default function Admin() {
     categories: "",
     available: true,
   });
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newPlant = {
-      ...plant,
-      price: Number(plant.price),
-      categories: plant.categories.split(",").map((c) => c.trim()),
-    };
-    await addPlant(newPlant);
-    alert("Plant added successfully!");
-    setPlant({ name: "", price: "", categories: "", available: true });
+    try {
+      setLoading(true);
+      const newPlant = {
+        ...plant,
+        price: Number(plant.price),
+        categories: plant.categories.split(",").map((c) => c.trim()),
+      };
+      await addPlant(newPlant);
+      alert("✅ Plant added successfully!");
+      setPlant({ name: "", price: "", categories: "", available: true });
+    } catch (err) {
+      console.error("Error adding plant:", err);
+      alert("❌ Failed to add plant. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="p-6 max-w-lg mx-auto">
-      <h2 className="text-2xl font-bold mb-4">Add New Plant</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <input
-          type="text"
-          placeholder="Plant Name"
-          value={plant.name}
-          onChange={(e) => setPlant({ ...plant, name: e.target.value })}
-          className="border p-2 w-full rounded-md"
-          required
-        />
-        <input
-          type="number"
-          placeholder="Price"
-          value={plant.price}
-          onChange={(e) => setPlant({ ...plant, price: e.target.value })}
-          className="border p-2 w-full rounded-md"
-          required
-        />
-        <input
-          type="text"
-          placeholder="Categories (comma separated)"
-          value={plant.categories}
-          onChange={(e) => setPlant({ ...plant, categories: e.target.value })}
-          className="border p-2 w-full rounded-md"
-          required
-        />
-        <select
-          value={plant.available}
-          onChange={(e) =>
-            setPlant({ ...plant, available: e.target.value === "true" })
-          }
-          className="border p-2 w-full rounded-md"
+    <div className="p-6 max-w-lg mx-auto bg-white rounded-2xl shadow-md mt-6">
+      <h2 className="text-2xl font-bold mb-6 text-center text-green-700">
+        🌱 Add New Plant
+      </h2>
+      <form onSubmit={handleSubmit} className="space-y-5">
+        {/* Plant Name */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Plant Name
+          </label>
+          <input
+            type="text"
+            placeholder="e.g. Aloe Vera"
+            value={plant.name}
+            onChange={(e) => setPlant({ ...plant, name: e.target.value })}
+            className="border p-3 w-full rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
+            required
+          />
+        </div>
+
+        {/* Price */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Price (₹)
+          </label>
+          <input
+            type="number"
+            placeholder="e.g. 250"
+            value={plant.price}
+            onChange={(e) => setPlant({ ...plant, price: e.target.value })}
+            className="border p-3 w-full rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
+            required
+          />
+        </div>
+
+        {/* Categories */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Categories
+          </label>
+          <input
+            type="text"
+            placeholder="e.g. Indoor, Succulent, Medicinal"
+            value={plant.categories}
+            onChange={(e) => setPlant({ ...plant, categories: e.target.value })}
+            className="border p-3 w-full rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
+            required
+          />
+          <p className="text-xs text-gray-500 mt-1">
+            Enter multiple categories separated by commas
+          </p>
+        </div>
+
+        {/* Availability */}
+        <div>
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            Availability
+          </label>
+          <select
+            value={plant.available}
+            onChange={(e) =>
+              setPlant({ ...plant, available: e.target.value === "true" })
+            }
+            className="border p-3 w-full rounded-lg focus:ring-2 focus:ring-green-400 outline-none"
+          >
+            <option value="true">Available</option>
+            <option value="false">Not Available</option>
+          </select>
+        </div>
+
+        {/* Submit Button */}
+        <button
+          type="submit"
+          disabled={loading}
+          className={`w-full py-3 rounded-lg font-semibold transition-all shadow-md ${
+            loading
+              ? "bg-gray-400 cursor-not-allowed"
+              : "bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700"
+          }`}
         >
-          <option value="true">Available</option>
-          <option value="false">Not Available</option>
-        </select>
-        <button className="bg-green-600 text-white px-4 py-2 rounded-md">
-          Add Plant
+          {loading ? "Adding..." : "Add Plant"}
         </button>
       </form>
     </div>

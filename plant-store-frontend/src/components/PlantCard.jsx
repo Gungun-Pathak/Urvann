@@ -15,6 +15,9 @@ export default function PlantCard({ plant }) {
             <span className="text-gray-400 text-sm">No Image</span>
           </div>
         )}
+
+        {/* Subtle overlay on hover */}
+        <div className="absolute inset-0 bg-black bg-opacity-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
       </div>
 
       {/* Plant Details */}
@@ -26,18 +29,27 @@ export default function PlantCard({ plant }) {
         <p className="text-gray-500 text-sm">
           Categories: {plant.categories.join(", ")}
         </p>
-        <p
-          className={`mt-2 font-semibold ${
-            plant.availability ? "text-green-600" : "text-red-600"
+
+        {/* Availability Badge */}
+        <span
+          className={`mt-2 inline-block px-3 py-1 text-xs font-semibold rounded-full w-fit ${
+            plant.availability ? "bg-green-100 text-green-700" : "bg-red-100 text-red-600"
           }`}
         >
-          {plant.availability ? "In Stock ✅" : "Out of Stock ❌"}
-        </p>
+          {plant.availability ? "In Stock" : "Out of Stock"}
+        </span>
       </div>
 
       {/* Add Button */}
-      <button className="mt-4 bg-gradient-to-r from-green-500 to-green-600 text-white font-medium py-2 px-4 rounded-xl hover:from-green-600 hover:to-green-700 transition-all duration-300 shadow-md hover:shadow-lg">
-        Add to Cart
+      <button
+        disabled={!plant.availability}
+        className={`mt-4 font-medium py-2 px-4 rounded-xl transition-all duration-300 shadow-md hover:shadow-lg ${
+          plant.availability
+            ? "bg-gradient-to-r from-green-500 to-green-600 text-white hover:from-green-600 hover:to-green-700"
+            : "bg-gray-300 text-gray-500 cursor-not-allowed"
+        }`}
+      >
+        {plant.availability ? "Add to Cart 🛒" : "Unavailable"}
       </button>
     </div>
   );
